@@ -16,7 +16,10 @@ func main() {
 	go add(b[:len(b)/2], c)
 	go add(b[len(b)/2:], c)
 
+  //close channel will not take no more value to channnel
+  defer close(c)
+
 	x, y := <-c, <-c
 
-	fmt.Printf("x: %v, y:%v, x+y:%v", x, y, x+y)
+	fmt.Printf("x: %v, y:%v, x+y:%v\n", x, y, x+y)
 }
